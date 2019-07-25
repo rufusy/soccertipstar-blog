@@ -1,8 +1,19 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+//@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+//@import '~bootstrap/scss/bootstrap';
+
+// font awesome
+@import 'node_modules/font-awesome/scss/font-awesome';
+
+// Bulma
+@import 'node_modules/bulma/bulma';
+
+// Bulma Vue modules
+@import 'node_modules/buefy/src/scss/buefy';
+
+ 
