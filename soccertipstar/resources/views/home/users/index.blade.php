@@ -23,45 +23,33 @@
                     <div class="box-header">
                         <div class="row">
                             <div class="col-xs-2">
-                                <button type="button" class="btn btn-primary btn-flat" data-toggle="modal"
+                                <!-- <button type="button" class="btn btn-primary btn-flat" data-toggle="modal"
                                     data-target="#modal-default">
                                     New user
-                                </button>
+                                </button> -->
+                                <a class="btn btn-primary btn-flat" href="javascript:void(0)" id="createNewUser">Create
+                                    new user</a>
                             </div>
                         </div>
                     </div>
                     <!-- /.box-header -->
 
                     <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped data-table">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>Id</th>
+                                    <th>No</th>
                                     <th>First name</th>
                                     <th>Last name</th>
                                     <th>Email</th>
-                                    <th>Date created</th>
-                                    <th>Actions</th>
+                                    <th>Date Created</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user )
-                                <tr>
-                                    <td>
-                                        <label><input type="checkbox" name="topic-1-checkbox"></label>
-                                    </td>
-                                    <td>{{$user->id}}</td>
-                                    <td>{{$user->first_name}}</td>
-                                    <td>{{$user->last_name}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->created_at->toFormattedDateString()}}</td>
-                                    <td><a class="" href="{{route('user.edit', $user->id)}}">Edit</a></td>
-                                </tr>
-                                @endforeach
+                              
                             </tbody>
                         </table>
-                        {{$users->links()}}
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -72,55 +60,47 @@
         <!-- /.row -->
 
 
-        <div class="modal fade" id="modal-default">
+        <div class="modal fade" id="modal-default" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Create new user</h4>
+                        <h4 class="modal-title" id="modal-heading">Create new user</h4>
                     </div>
                     <div class="modal-body">
                         <div class="register-box-body">
-                            <form action="{{route('user.store')}}" method="post">
+                            <form action="" method="post" id="user-form" name="user-form">
                                 @csrf
+                                <div id="errorDiv1"></div>
+
+                                <input type="hidden" name="user_id" id="user_id">
+
                                 <div class="form-group has-feedback">
                                     <input type="text" class="form-control" placeholder="First name" name="first_name"
                                         id="first_name">
                                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                                    @error('first_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
                                 </div>
+
                                 <div class="form-group has-feedback">
                                     <input type="text" class="form-control" placeholder="Last name" name="last_name"
                                         id="last_name">
                                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                                    @error('last_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
                                 </div>
+
                                 <div class="form-group has-feedback">
                                     <input type="email" class="form-control" placeholder="Email" name="email"
                                         id="email">
                                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
                                 </div>
+
                                 <div class="row">
                                     <div class="col-xs-8">
                                     </div>
                                     <!-- /.col -->
                                     <div class="col-xs-4">
-                                        <button type="submit"
-                                            class="btn btn-primary btn-block btn-flat">Register</button>
+                                        <button type="submit" id="saveBtn" value="create"
+                                            class="btn btn-primary btn-block btn-flat">Save changes</button>
                                     </div>
                                     <!-- /.col -->
                                 </div>
@@ -152,4 +132,110 @@
     <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
     reserved.
 </footer>
+@endsection
+
+
+@section('scripts')
+<script type="text/javascript">
+    // example on https://hdtuto.com/article/ajax-crud-operations-in-laravel-58-with-modal-pagination
+    $(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        var table = $('.data-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('user.index') }}",
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex'
+                },
+                {
+                    data: 'first_name',
+                    name: 'first_name'
+                },
+                {
+                    data: 'last_name',
+                    name: 'last_name'
+                },
+                {
+                    data: 'email',
+                    name: 'email'
+                },
+                {
+                    data: 'created_at',
+                    name: 'created_at'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                },
+            ]
+        });
+
+
+        $('#createNewUser').click(function () {
+            $('#saveBtn').val("create-user");
+            $('#user_id').val('');
+            $('#user-form').trigger("reset");
+            $('#modal-heading').html("Create New User");
+            $('#modal-default').modal('show');
+        });
+
+
+        $('body').on('click', '.editUser', function () {
+            var user_id = $(this).data('id');
+            $.get("{{ route('user.index') }}" + '/' + user_id + '/edit', function (data) {
+                $('#modal-heading').html("Edit User");
+                $('#saveBtn').val("edit-user");
+                $('#modal-default').modal('show');
+                $('#user_id').val(data.id);
+                $('#first_name').val(data.first_name);
+                $('#last_name').val(data.last_name);
+                $('#email').val(data.email);
+            })
+        });
+
+        $('#saveBtn').click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                data: $('#user-form').serialize(),
+                url: "{{route('user.store')}}",
+                type: "POST",
+                dataType: 'json',
+                success: function (data) {
+                    $('#user-form').trigger("reset");
+                    $('#modal-default').modal('hide');
+                    table.draw();
+                },
+                error: function (data) {
+                    $('#errorDiv1').append(data);
+                }
+            });
+        });
+
+
+        $('body').on('click', '.deleteUser', function () {
+            var user_id = $(this).data('id');
+            confirm("Are You sure want to delete !");
+            $.ajax({
+                type: "DELETE",
+                url: "{{ route('user.store') }}" + '/' + user_id,
+                success: function (data) {
+                    table.draw();
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                }
+            });
+        });
+
+    });
+
+</script>
 @endsection

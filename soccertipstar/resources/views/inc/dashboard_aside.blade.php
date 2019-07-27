@@ -38,7 +38,12 @@
             </li>
             <li>
                 <a href="{{route('user.index')}}">
-                    <i class="fa fa-user"></i> <span>Users</span>
+                    <i class="fa fa-user"></i> <span>Manage Users</span>
+                </a>
+            </li>
+             <li>
+                <a href="{{route('user.index')}}">
+                    <i class="fa fa-lock"></i> <span>Roles & Permissions</span>
                 </a>
             </li>
         </ul>
