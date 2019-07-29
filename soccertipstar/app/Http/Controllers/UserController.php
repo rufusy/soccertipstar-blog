@@ -10,6 +10,13 @@ use DataTables;
 
 class UserController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -72,7 +79,7 @@ class UserController extends Controller
             $max = mb_strlen($keyspace, '8bit') - 1;
             for ($i=0; $i<$length; $i++)
                 $password .= $keyspace[random_int(0, $max)];
-                
+            $password = 'test1234';
             $extra_data = [
                             'password' => Hash::make($password),
                         ];
