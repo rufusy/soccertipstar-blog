@@ -9,6 +9,9 @@
 
     <title>{{ config('app.name', 'soccertipstar') }}</title>
 
+    <!-- Fonts -->
+{{--     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+ --}}
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{{ asset('Magazine/css/linearicons.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('Magazine/css/font-awesome.min.css') }}">

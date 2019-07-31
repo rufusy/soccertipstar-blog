@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,17 +13,16 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-
-    <!-- AdminLTE template css -->
-
+    <!-- Styles -->
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('AdminLTE/bower_components/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('AdminLTE/bower_components/font-awesome/css/font-awesome.min.css') }}">
     <!-- Ionicons -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('AdminLTE/bower_components/Ionicons/css/ionicons.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('AdminLTE/bower_components/Ionicons/css/ionicons.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" type="text/css" href="{{ asset('AdminLTE/dist/css/AdminLTE.min.css') }}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -31,29 +31,34 @@
     <!-- Morris chart -->
     <link rel="stylesheet" type="text/css" href="{{ asset('AdminLTE/bower_components/morris.js/morris.css') }}">
     <!-- jvectormap -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('AdminLTE/bower_components/jvectormap/jquery-jvectormap.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('AdminLTE/bower_components/jvectormap/jquery-jvectormap.css') }}">
     <!-- Date Picker -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('AdminLTE/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('AdminLTE/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
     <!-- Daterange picker -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}">
     <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
     <!-- Jquery data tables -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
 
-     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
 
     <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition skin-purple sidebar-mini">
-    <div id="dashboard">
+<body class="hold-transition skin-blue sidebar-mini">
+    <div id="dashboard-app">
         <div class="wrapper">
             <header class="main-header">
                 <!-- Logo -->
@@ -67,11 +72,12 @@
                 @include('inc.dashboard_nav')
             </header>
             @include('inc.dashboard_aside')
+
             <main class="py-4">
-                 @yield('content')
+                @yield('content')
             </main>
         </div>
-    
+
 
         {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
         <!-- jQuery 3 -->
@@ -95,7 +101,8 @@
         <script src="{{ asset('AdminLTE/bower_components/moment/min/moment.min.js') }}"></script>
         <script src="{{ asset('AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
         <!-- datepicker -->
-        <script src="{{ asset('AdminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+        <script src="{{ asset('AdminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}">
+        </script>
         <!-- Bootstrap WYSIHTML5 -->
         <script src="{{ asset('AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
         <!-- Slimscroll -->
@@ -104,17 +111,14 @@
         <script src="{{ asset('AdminLTE/bower_components/fastclick/lib/fastclick.js') }}"></script>
         <!-- AdminLTE App -->
         <script src="{{ asset('AdminLTE/dist/js/adminlte.min.js') }}"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="{{ asset('AdminLTE/dist/js/pages/dashboard.js') }}"></script>
-        <!-- AdminLTE for demo purposes -->
-        <script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>
         <!-- CKeditor -->
         {{-- <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script> --}}
         {{-- <script>
             CKEDITOR.replace( 'post-body' );
         </script> --}}
-    
+
         @yield('scripts')
     </div>
 </body>
+
 </html>
