@@ -81,9 +81,9 @@ class ProfileController extends Controller
             'sex' => '',
             'bio' => '',
             'image' => '',
-            'twitter_url' => '',
-            'facebook_url' => '',
-            'instagram_url' => '',
+            'twitter_url' => $request->twitter_url != null ? 'url':'',
+            'facebook_url' => $request->facebook_url != null ? 'url':'',
+            'instagram_url' => $request->instagram_url != null ? 'url':'',
         ]);
         if(request('image'))
         {

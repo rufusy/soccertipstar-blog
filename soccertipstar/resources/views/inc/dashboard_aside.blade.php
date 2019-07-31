@@ -28,7 +28,7 @@
                 </a>
             </li>
              <li>
-                <a href="{{route('user.index')}}">
+                <a href="{{route('permission.index')}}">
                     <i class="fa fa-lock"></i> <span>Roles & Permissions</span>
                 </a>
             </li>
