@@ -25,19 +25,6 @@
                             @csrf
 
                             <div class="form-group">
-                                <!-- <label>
-                                    <input type="radio" class="" v-model="permissionType" name="permission_type"
-                                        native-value="basic"> Basic Permission
-                                </label>
-                                <label>
-                                    <input type="radio" class="" v-model="permissionType" name="permission_type"
-                                        native-value="crud"> CRUD Permission
-                                </label> -->
-
-
-                            </div>
-
-                            <div class="form-group">
                                 <div class="radio">
                                     <b-radio v-model="permissionType" name="permission_type" native-value="basic">Basic
                                         Permission</b-radio>
@@ -47,7 +34,6 @@
                                         Permission</b-radio>
                                 </div>
                             </div>
-
 
                             <!-- permission = basic -->
                             <div class="form-group" v-if="permissionType == 'basic'">

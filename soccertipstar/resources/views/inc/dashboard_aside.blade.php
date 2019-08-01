@@ -14,10 +14,10 @@
             </div>
         </div>
 
-    
-      <!-- sidebar menu: : style can be found in sidebar.less -->
+
+        <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-           <li>
+            <li>
                 <a href="{{route('home')}}">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
@@ -27,10 +27,26 @@
                     <i class="fa fa-user"></i> <span>Manage Users</span>
                 </a>
             </li>
-             <li>
-                <a href="{{route('permission.index')}}">
-                    <i class="fa fa-lock"></i> <span>Roles & Permissions</span>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-lock"></i> <span>Roles and permissions</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{route('permission.index')}}">
+                            <i class=""></i> <span>Permissions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('role.index')}}">
+                            <i class=""></i> <span>Roles</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
 

@@ -21,22 +21,26 @@
             <div class="col-md-12">
                 <div class="box box-info">
                     <div class="box-body pad">
-                        <form method="POST" action="{{route('permission.update',  $permission->id)}}" style="margin-top: 5px;">
+                        <form method="POST" action="{{route('permission.update',  $permission->id)}}"
+                            style="margin-top: 5px;">
                             @csrf
                             @method('PATCH')
                             <div class="form-group">
                                 <label class="control-label" for="display_name"> Name (Display name) </label>
-                                <input type="text" class="form-control" id="display_name" name="display_name" value="{{$permission->display_name}}">
+                                <input type="text" class="form-control" id="display_name" name="display_name"
+                                    value="{{$permission->display_name}}">
                             </div>
 
                             <div class="form-group" v-if="permissionType == 'basic'">
                                 <label class="control-label" for="name"> Slug small (Cannot be changed)</small></label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{$permission->name}}">
+                                <input type="text" class="form-control" id="name" name="name"
+                                    value="{{$permission->name}}">
                             </div>
 
                             <div class="form-group " v-if="permissionType == 'basic'">
                                 <label class="control-label" for="description"> Description </label>
-                                <input type="text" class="form-control" id="description" name="description" value="{{$permission->description}}"
+                                <input type="text" class="form-control" id="description" name="description"
+                                    value="{{$permission->description}}"
                                     placeholder="Describe what this permission does">
                             </div>
                             <div class="form-group ">
