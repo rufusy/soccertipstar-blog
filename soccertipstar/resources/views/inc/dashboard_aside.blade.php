@@ -4,7 +4,7 @@
     <section class="sidebar">
 
         <!-- Sidebar user panel -->
-        <div class="user-panel">
+        {{-- <div class="user-panel">
             <div class="pull-left image">
                 <img src="/{{Auth::user()->profile->profileImage()}}" class="img-circle" alt="User Image">
             </div>
@@ -12,7 +12,7 @@
                 <p>{{Auth::user()->first_name}}</p>
                 <a href="/profile/{{Auth::user()->id}}"><i class="fa fa-circle text-success"></i>online</a>
             </div>
-        </div>
+        </div> --}}
 
 
         <!-- sidebar menu: : style can be found in sidebar.less -->

@@ -19,6 +19,12 @@ class RoleController extends Controller
         return view('home.roles.index', compact('roles'));
     }
 
+    public function fetch_roles_ajax()
+    {
+        $roles = Role::all();
+        return $roles;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

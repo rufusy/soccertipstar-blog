@@ -23,6 +23,10 @@
                     <div class="box-header">
                         <div class="row">
                             <div class="col-xs-2">
+                                <!-- <button type="button" class="btn btn-primary btn-flat" data-toggle="modal"
+                                    data-target="#modal-default">
+                                    New user
+                                </button> -->
                                 <a class="btn btn-primary btn-flat" href="javascript:void(0)" id="createNewUser">Create
                                     new user</a>
                             </div>
@@ -43,7 +47,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- append datatable -->
+                              
                             </tbody>
                         </table>
                     </div>
@@ -54,7 +58,8 @@
             <!-- /.col -->
         </div>
         <!-- /.row -->
-                                                                                                         
+
+
         <div class="modal fade" id="modal-default" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -89,8 +94,21 @@
                                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                                 </div>
 
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2 col-lg-2">
+                                            <div class="form-group">
+                                                <div class="checkbox" id="roles">
+                                                    <!--- append roles -->>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="row">
-                                    <div class="col-xs-8"></div>
+                                    <div class="col-xs-8">
+                                    </div>
                                     <!-- /.col -->
                                     <div class="col-xs-4">
                                         <button type="submit" id="saveBtn" value="create"
@@ -104,13 +122,18 @@
                     </div>
                     <!-- /.register-box -->
                 </div>
-                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-dialog -->
+            <!-- /.modal-content -->
         </div>
-        <!-- /.modal -->
-    </section>
-    <!-- /. Main content -->
+        <!-- /.modal-dialog -->
+
+
+</div>
+<!-- /.modal -->
+
+
+</section>
+<!-- /. Main content -->
 </div>
 <!-- /.content-wrapper -->
 
@@ -133,6 +156,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         var table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
@@ -175,6 +199,7 @@
             $('#modal-default').modal('show');
         });
 
+
         $('body').on('click', '.editUser', function () {
             var user_id = $(this).data('id');
             $.get("{{ route('user.index') }}" + '/' + user_id + '/edit', function (data) {
@@ -186,7 +211,24 @@
                 $('#last_name').val(data.last_name);
                 $('#email').val(data.email);
             })
+
+            $.get("{{ route('fetch_roles_ajax') }}", function (roles_data){
+                 index = 0;
+                 while(index < roles_data.length)
+                 {
+                    index = 0;
+                    while(index<roles_data.length)
+                 {
+                         $("#roles").append('<label><input type="checkbox" v-model="roleSelected" :native-value="data[index].id">' +roles_data[index].display_name+ '</input></label>');
+                         index++;
+                     }
+                 }
+                 roles_data = [];
+             })
+
         });
+
+    
 
         $('#saveBtn').click(function (e) {
             e.preventDefault();
@@ -205,6 +247,7 @@
                 }
             });
         });
+
         $('body').on('click', '.deleteUser', function () {
             var user_id = $(this).data('id');
             confirm("Are You sure want to delete !");
@@ -223,7 +266,3 @@
 
 </script>
 @endsection
-
-
-
-

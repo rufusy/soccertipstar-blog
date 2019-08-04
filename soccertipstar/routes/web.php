@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/role/fetch_roles_ajax', 'RoleController@fetch_roles_ajax')->name('fetch_roles_ajax');
 Auth::routes();
 Route::resource('user', 'UserController');
 Route::resource('profile', 'ProfileController');

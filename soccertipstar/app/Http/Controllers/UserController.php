@@ -1,22 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 use App\User;
+use App\Role;
 use DataTables;
 
 class UserController extends Controller
 {
-
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
+  
     /**
      * Display a listing of the resource.
      *
@@ -24,10 +18,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-    
         if($request->ajax()){
             $data = User::latest()->get();
-
             return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
@@ -37,7 +29,6 @@ class UserController extends Controller
                                     data-original-title="Edit" 
                                     class="edit btn btn-primary btn-sm btn-flat editUser">
                                     Edit</a>';
-
                         $btn = $btn.' <a href="javascript:void(0)" 
                                         data-toggle="tooltip"  data-id="'.$row->id.'" 
                                         data-original-title="Delete" 
@@ -47,7 +38,7 @@ class UserController extends Controller
                         $btn = $btn.' <a href="user/'.$row->id.'" 
                                         data-toggle="tooltip"  data-id="'.$row->id.'" 
                                         data-original-title="View" 
-                                        class="btn btn-danger btn-sm btn-flat deleteUser">
+                                        class="btn btn-success btn-sm btn-flat viewUser">
                                         view</a>';
                         return $btn;
                     })
@@ -56,7 +47,6 @@ class UserController extends Controller
         }
         return view('home.users.index');
     }
-
    
     /**
      * Store a newly created resource in storage.
@@ -92,8 +82,8 @@ class UserController extends Controller
                 'password' => $final_data['password']
             ]);
             return response()->json(['success'=>'user saved successfully.']);
-        
         }
+
         else
         {
             $id = $request->user_id;
@@ -107,12 +97,13 @@ class UserController extends Controller
             $user->last_name = $data['last_name'];
             $user->email=$data['email'];
             if($user->save())
+            {
                 return response()->json(['success'=>'user saved successfully.']);
+            } 
         }
-        
     }
-
    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -125,10 +116,23 @@ class UserController extends Controller
         return response()->json($user);
     }
 
+
     public function show($id)
     {
+        $roles = Role::all();
         $user = User::find($id);
-        return view('home.users.show', compact('user'));
+        return view('home.users.show', compact('user', 'roles'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        if($request->roles)
+        {
+            $user->syncRoles(explode(',', $request->roles));
+        }
+        return redirect()->back();
     }
 
     /**
