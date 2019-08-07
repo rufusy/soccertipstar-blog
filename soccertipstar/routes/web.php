@@ -11,18 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('blog.index');
-});
 
-
+Route::get('/', 'PostController@index');
+Route::get('/about', 'PostController@index')->name('about');
+Route::get('/contact', 'PostController@index')->name('contact');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/role/fetch_roles_ajax', 'RoleController@fetch_roles_ajax')->name('fetch_roles_ajax');
 Auth::routes();
 Route::resource('user', 'UserController');
 Route::resource('profile', 'ProfileController');
 Route::resource('role', 'RoleController');
 Route::resource('permission', 'PermissionController');
+Route::resource('post', 'PostController');
+
+
+
+
 
 
 

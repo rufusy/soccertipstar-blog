@@ -32,7 +32,7 @@
                     <div class="box-body">
                         <div class="row">
                             @foreach ($roles as $role)
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                                 <div class="box box-solid">
                                     <div class="box-header with-border">
                                         <h3 class="box-title"></h3>

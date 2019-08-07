@@ -8,6 +8,12 @@ use App\Permission;
 
 class RoleController extends Controller
 {
+
+    public function __construct()
+    {
+      $this->middleware('role:superadministrator|administrator');    
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,11 +25,6 @@ class RoleController extends Controller
         return view('home.roles.index', compact('roles'));
     }
 
-    public function fetch_roles_ajax()
-    {
-        $roles = Role::all();
-        return $roles;
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -33,8 +34,11 @@ class RoleController extends Controller
     public function create()
     {
         $permissions = Permission::all();
-        return view('home.roles.create')->withPermissions($permissions);    }
+        return view('home.roles.create')->withPermissions($permissions);    
+    }
 
+
+    
     /**
      * Store a newly created resource in storage.
      *

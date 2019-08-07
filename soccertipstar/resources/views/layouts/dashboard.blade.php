@@ -112,10 +112,10 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('AdminLTE/dist/js/adminlte.min.js') }}"></script>
     <!-- CKeditor -->
-    {{-- <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script> --}}
-    {{-- <script>
-            CKEDITOR.replace( 'post-body' );
-        </script> --}}
+    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script> 
+    <script>
+        CKEDITOR.replace( 'content' );
+    </script> 
 
     @yield('scripts')
 </body>

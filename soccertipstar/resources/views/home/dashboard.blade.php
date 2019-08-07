@@ -23,164 +23,28 @@
                     <div class="box-header">
                         <div class="row">
                             <div class="col-xs-2">
-                                <a href="/post/create" class="btn btn-block btn-flat btn-primary">New post</a>
-                            </div>
-
-                            <div class="col-xs-6 col-l-6 col-md-6 col-sm-6">
-                                <div class="row">
-                                    <div class="col-xs-3"></div>
-
-                                    <div class="col-xs-6 col-l-6 col-md-6 col-sm-6 text-center">
-                                        <div form-group>
-                                            <select class="form-control">
-                                                <option>soccer</option>
-                                                <option>tennis</option>
-                                                <option>volleyball</option>
-                                                <option>basketball</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-3 text-center"></div>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-4 col-l-4 col-md-4 col-sm-4">
-                                <div class="row">
-                                    <div class="col-xs-2"></div>
-                                    <div class="col-xs-10 text-center">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <input type="text" name="" placeholder="search" class="form-control">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-search"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin-top: 8px;">
-                            <div class="col-xs-2 col-l-2 col-md-2 col-sm-2">
-                                <div class="checkbox" style="margin-left: 10px;">
-                                    <label><input type="checkbox" name="topic-1-checkbox"></label>
-                                </div>
-
-                            </div>
-                            <div class="col-xs-4 col-l-4 col-md-4 col-sm-4 text-center">
-                                <div class="btn-group ">
-                                    <button type="button"
-                                        class="btn btn-default btn-flat btn-success btn-small">publish</button>
-                                    <button type="button" class="btn btn-default btn-flat btn-info btn-small"
-                                        style="margin-left: 1px;">draft</button>
-                                    <button type="button" class="btn btn-default btn-flat btn-danger btn-small"
-                                        style="margin-left: 1px;">delete</button>
-                                </div>
-                            </div>
-                            <div class="col-xs-4 col-l-4 col-md-4 col-sm-4 text-center">
-                                <ul class="pagination pagination-sm no-margin">
-                                    <li><a href="#">
-                                            <</a> </li> <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#">></a></li>
-                                </ul>
-                            </div>
-                            <div class="col-xs-2 col-l-2 col-md-2 col-sm-2">
-                                <div class="row">
-                                    <div class="col-xs-10 col-l-10 col-md-10 col-sm-10 text-center ">
-                                        <div form-group>
-                                            <select class="form-control">
-                                                <option>10</option>
-                                                <option>20</option>
-                                                <option>30</option>
-                                                <option>50</option>
-                                                <option>all</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a class="btn btn-primary btn-flat" href="/post/create" id="createNewPost">Create
+                                    new post</a>
                             </div>
                         </div>
                     </div>
                     <!-- /.box-header -->
 
                     <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="allPostsTable" class="table table-bordered table-striped data-table">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
+                                    <th>No</th>
+                                    <th>Title</th>
+                                    <th>Date created</th>
+                                    <th>Date published</th>
+                                    <th>Date updated</th>
+                                    <th>Featured</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <label><input type="checkbox" name="topic-1-checkbox"></label>
-                                    </td>
-                                    <td>Topic 1</td>
-                                    <td>Draft</td>
-                                    <td> Rufusy</td>
-                                    <td>07/07/2019</td>
-                                    <div v-on:mouseover="active = !active">
-                                        <td>Edit</td>
-                                    </div>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label><input type="checkbox" name="topic-1-checkbox"></label>
-                                    </td>
-                                    <td>Topic 1</td>
-                                    <td>Draft</td>
-                                    <td> Rufusy</td>
-                                    <td>07/07/2019</td>
-                                    <div v-on:mouseover="active = !active">
-                                        <td>Edit</td>
-                                    </div>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label><input type="checkbox" name="topic-1-checkbox"></label>
-                                    </td>
-                                    <td>Topic 1</td>
-                                    <td>Draft</td>
-                                    <td> Rufusy</td>
-                                    <td>07/07/2019</td>
-                                    <div v-on:mouseover="active = !active">
-                                        <td>Edit</td>
-                                    </div>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label><input type="checkbox" name="topic-1-checkbox"></label>
-                                    </td>
-                                    <td>Topic 1</td>
-                                    <td>Draft</td>
-                                    <td> Rufusy</td>
-                                    <td>07/07/2019</td>
-                                    <div v-on:mouseover="active = !active">
-                                        <td>Edit</td>
-                                    </div>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label><input type="checkbox" name="topic-1-checkbox"></label>
-                                    </td>
-                                    <td>Topic 1</td>
-                                    <td>Draft</td>
-                                    <td> Rufusy</td>
-                                    <td>07/07/2019</td>
-                                    <div v-on:mouseover="active = !active">
-                                        <td>Edit</td>
-                                    </div>
-                                </tr>
+                                <!-- append datatable -->
                             </tbody>
                         </table>
                     </div>
@@ -191,6 +55,7 @@
             <!-- /.col -->
         </div>
         <!-- /.row -->
+
     </section>
     <!-- /. Main content -->
 </div>
@@ -203,4 +68,70 @@
     <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
     reserved.
 </footer>
+@endsection
+
+
+@section('scripts')
+<script type="text/javascript">
+    // example on https://hdtuto.com/article/ajax-crud-operations-in-laravel-58-with-modal-pagination
+    $(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var table = $('.data-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('home') }}",
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex'
+                },
+                {
+                    data: 'title',
+                    name: 'title'
+                },
+                {
+                    data: 'created_at',
+                    name: 'created_at'
+                },
+                {
+                    data: 'published_at',
+                    name: 'published_at'
+                },
+                {
+                    data: 'updated_at',
+                    name: 'updated_at'
+                },
+                {
+                    data: 'featured',
+                    name: 'featured'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                },
+            ]
+        });
+
+        $('body').on('click', '.deletePost', function () {
+            var post_id = $(this).data('id');
+            if(confirm("Are You sure want to delete !")){
+                $.ajax({
+                    type: "DELETE",
+                    url: "{{ route('post.store') }}" + '/' + post_id,
+                    success: function (data) {
+                        table.draw();
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+            }
+        });
+    });
+</script>
 @endsection

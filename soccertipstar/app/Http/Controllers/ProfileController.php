@@ -10,6 +10,18 @@ use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -102,7 +114,7 @@ class ProfileController extends Controller
             'last_name' => $data['last_name'],
             'email' => $data['email']
         ]);
-        auth()->user()->profile->update([
+        auth()->user()->profile()->update([
             'mobile_no' => $data['mobile_no'],
             'sex' => $data['sex'],
             'bio' => $data['bio'],

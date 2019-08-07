@@ -207,17 +207,18 @@
         });
         $('body').on('click', '.deleteUser', function () {
             var user_id = $(this).data('id');
-            confirm("Are You sure want to delete !");
-            $.ajax({
-                type: "DELETE",
-                url: "{{ route('user.store') }}" + '/' + user_id,
-                success: function (data) {
-                    table.draw();
-                },
-                error: function (data) {
-                    console.log('Error:', data);
-                }
-            });
+            if(confirm("Are You sure want to delete !")){
+                $.ajax({
+                    type: "DELETE",
+                    url: "{{ route('user.store') }}" + '/' + user_id,
+                    success: function (data) {
+                        table.draw();
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+            }
         });
     });
 
