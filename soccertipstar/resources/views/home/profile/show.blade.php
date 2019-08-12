@@ -1,6 +1,5 @@
 @extends('layouts.dashboard')
 
-
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -9,32 +8,27 @@
         <h1>
             User Profile
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Examples</a></li>
-            <li class="active">User profile</li>
-        </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-
         <div class="row">
             <div class="col-md-3">
-
                 <!-- Profile Image -->
                 <div class="box box-primary">
                     <div class="box-body box-profile">
                         <img class="profile-user-img img-responsive img-circle"
                             src="/{{$user->profile->profileImage()}}" alt="User profile picture">
-
                         <h3 class="profile-username text-center">{{$user->first_name.' '.$user->last_name}} </h3>
-
-                        <p class="text-muted text-center">Software Engineer</p>
-
+                        <ul class="list-group list-group-unbordered">
+                            {{$user->roles->count()==0?'You have no role':''}}
+                            @foreach ($user->roles as $role)
+                            <li class="list-group-item">{{$role->display_name}} ({{$role->description}})</li>
+                            @endforeach
+                        </ul>
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
-                                <b>Total posts</b> <a class="pull-right">1,322</a>
+                                <b>Total posts</b> <a class="pull-right">{{$user->posts->count()}}</a>
                             </li>
                         </ul>
                     </div>
@@ -49,19 +43,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-                        <p>
-                            <span class="label label-danger">UI Design</span>
-                            <span class="label label-success">Coding</span>
-                            <span class="label label-info">Javascript</span>
-                            <span class="label label-warning">PHP</span>
-                            <span class="label label-primary">Node.js</span>
-                        </p>
-
-                        <hr>
-
                         <strong><i class="fa fa-file-text-o margin-r-5"></i> Bio</strong>
-
                         <p>{{$user->profile->bio}}</p>
                     </div>
                     <!-- /.box-body -->
@@ -74,6 +56,7 @@
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#timeline" data-toggle="tab">Timeline</a></li>
                         <li><a href="#settings" data-toggle="tab">Settings</a></li>
+                        <li><a href="#password" data-toggle="tab">Password</a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="active tab-pane" id="timeline">
@@ -166,8 +149,10 @@
                                     <div class="col-sm-10">
                                         <select name="sex" id="sex" class="form-control select2" style="width: 100%;">
                                             <option value=""></option>
-                                            <option @if ($user->profile->sex === 'M') selected="selected" @endif value="M">Male</option>
-                                            <option @if ($user->profile->sex === 'F') selected="selected" @endif value="F">Female</option>
+                                            <option @if ($user->profile->sex === 'M') selected="selected" @endif
+                                                value="M">Male</option>
+                                            <option @if ($user->profile->sex === 'F') selected="selected" @endif
+                                                value="F">Female</option>
                                         </select>
                                     </div>
                                 </div>
@@ -234,9 +219,8 @@
                                     <label for="bio" class="col-sm-2 control-label">instagram url</label>
 
                                     <div class="col-sm-10">
-                                        <textarea class="form-control @error('bio') is-invalid @enderror"
-                                            name="bio" id="bio"
-                                            placeholder="">{{ old('bio') ?? $user->profile->bio }}</textarea>
+                                        <textarea class="form-control @error('bio') is-invalid @enderror" name="bio"
+                                            id="bio" placeholder="">{{ old('bio') ?? $user->profile->bio }}</textarea>
 
                                         @error('bio')
                                         <span class="invalid-feedback" role="alert">
@@ -261,6 +245,85 @@
                                     </div>
                                 </div>
                             </form>
+                        </div>
+                        <!-- /.tab-pane -->
+
+                        <div class="tab-pane" id="password">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                @if (session('error'))
+                                                <div class="alert alert-danger">
+                                                    {{ session('error') }}
+                                                </div>
+                                                @endif
+                                                @if (session('success'))
+                                                <div class="alert alert-success">
+                                                    {{ session('success') }}
+                                                </div>
+                                                @endif
+                                                <form class="form-horizontal" method="POST" action="/changePassword">
+                                                    @csrf
+                                                    <div
+                                                        class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
+                                                        <label for="new-password" class="col-md-4 control-label">Current
+                                                            Password</label>
+
+                                                        <div class="col-md-6">
+                                                            <input id="current-password" type="password"
+                                                                class="form-control" name="current-password" required>
+
+                                                            @if ($errors->has('current-password'))
+                                                            <span class="help-block">
+                                                                <strong>{{ $errors->first('current-password') }}</strong>
+                                                            </span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+
+                                                    <div
+                                                        class="form-group{{ $errors->has('new-password') ? ' has-error' : '' }}">
+                                                        <label for="new-password" class="col-md-4 control-label">New
+                                                            Password</label>
+
+                                                        <div class="col-md-6">
+                                                            <input id="new-password" type="password"
+                                                                class="form-control" name="new-password" required>
+
+                                                            @if ($errors->has('new-password'))
+                                                            <span class="help-block">
+                                                                <strong>{{ $errors->first('new-password') }}</strong>
+                                                            </span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="new-password-confirm"
+                                                            class="col-md-4 control-label">Confirm New Password</label>
+
+                                                        <div class="col-md-6">
+                                                            <input id="new-password-confirm" type="password"
+                                                                class="form-control" name="new-password_confirmation"
+                                                                required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-md-6 col-md-offset-4">
+                                                            <button type="submit" class="btn btn-primary btn-flat">
+                                                                Change Password
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.tab-pane -->
                     </div>

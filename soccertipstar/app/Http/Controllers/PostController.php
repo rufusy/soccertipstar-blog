@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SlugController as SlugController;
 use DateTime;
 use App\Post;
+use Intervention\Image\Facades\Image;
+
 
 class PostController extends SlugController
 {
@@ -18,15 +20,25 @@ class PostController extends SlugController
      */
     public function index()
     {
+        $recent_posts = Post::where('status','=',1)
+                        ->orderBy('id', 'desc')
+                        ->take(3)
+                        ->get();
+
         $posts = Post::where('status','=',1)
-                ->where('featured','=',0)
-                ->paginate(5);
+                ->where('id', '<>', $recent_posts[0]->id)
+                ->where('id', '<>', $recent_posts[1]->id)
+                ->where('id', '<>', $recent_posts[2]->id)
+                ->orderBy('id', 'desc')
+                ->paginate(10);
 
         $featured_posts = Post::where('status','=',1)
                         ->where('featured','=',1)
+                        ->orderBy('id', 'desc')
+                        ->orderBy('id', 'desc')
                         ->get();
-
-        return view('blog.index', compact('posts','featured_posts'));
+                        
+        return view('blog.index', compact('posts', 'recent_posts', 'featured_posts'));
     }
 
 
@@ -48,13 +60,19 @@ class PostController extends SlugController
      */
     public function store(Request $request)
     {
-         $data = request()->validate([
+         $input = request()->validate([
             'title' => 'required|unique:posts',
             'content' => 'required',
+            'image' => 'required'
         ]);
 
+        $imagePath = request('image')->store('posts', 'public'); // pass in directory and driver
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000,1000);
+        $image->save();
+        $imageArray = ['image' => $imagePath];
+
         $slug = $this->createSlug($request->input('title'));
-        $excerpt = substr($data['content'], 0, 300);
+        $excerpt = substr($input['content'], 0, 300);
         if($request->input('submit') === 'publish')
         {
             $published_at = new DateTime();
@@ -66,11 +84,13 @@ class PostController extends SlugController
             $status = 0;
         }
         $featured = 0;
+        $data = array_merge($input, $imageArray);
         auth()->user()->posts()->create([
             'title' => $data['title'],
             'slug' => $slug,
             'excerpt' => $excerpt,
             'content' => $data['content'],
+            'image' => $data['image'],
             'status' => $status,
             'featured' => $featured,
             'published_at' => $published_at

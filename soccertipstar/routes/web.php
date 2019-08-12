@@ -16,12 +16,15 @@ Route::get('/', 'PostController@index');
 Route::get('/about', 'PostController@index')->name('about');
 Route::get('/contact', 'PostController@index')->name('contact');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/changePassword','ProfileController@changePassword')->name('changePassword');
 Auth::routes();
 Route::resource('user', 'UserController');
 Route::resource('profile', 'ProfileController');
 Route::resource('role', 'RoleController');
 Route::resource('permission', 'PermissionController');
 Route::resource('post', 'PostController');
+
+
 
 
 

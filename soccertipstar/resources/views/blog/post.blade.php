@@ -12,7 +12,7 @@
                     <div class="single-post-wrap">
                         <div class="feature-img-thumb relative">
                             <div class="overlay overlay-bg"></div>
-                            <img class="img-fluid" src="/storage/img/f1.jpg" alt="">
+                            <img src="/storage/{{$post->image}}"  style="width:710px;height:300px;"alt="">
                         </div>
                         <div class="content-wrap">
                             <a href="#">
@@ -66,9 +66,8 @@
                         <div class="single-sidebar-widget newsletter-widget">
                             <h6 class="title">Newsletter</h6>
                             <p>
-                                Here, I focus on a range of items
-                                andfeatures that we use in life without
-                                giving them a second thought.
+                                You can unsubscribe us at any time to receive the latest news and other goodies as they become available. 
+                                We promise not to spam you.
                             </p>
                             <div class="form-group d-flex flex-row">
                                 <div class="col-autos">
@@ -86,70 +85,6 @@
                         </div>
                         <div class="single-sidebar-widget most-popular-widget">
                             <h6 class="title">Most Popular</h6>
-                            <div class="single-list flex-row d-flex">
-                                <div class="thumb">
-                                    <img src="storage/img/m1.jpg" alt="">
-                                </div>
-                                <div class="details">
-                                    <a href="image-post.html">
-                                        <h6>Help Finding Information
-                                            Online is so easy</h6>
-                                    </a>
-                                    <ul class="meta">
-                                        <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April, 2018</a>
-                                        </li>
-                                        <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="single-list flex-row d-flex">
-                                <div class="thumb">
-                                    <img src="storage/img/m2.jpg" alt="">
-                                </div>
-                                <div class="details">
-                                    <a href="image-post.html">
-                                        <h6>Compatible Inkjet Cartr
-                                            world famous</h6>
-                                    </a>
-                                    <ul class="meta">
-                                        <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April, 2018</a>
-                                        </li>
-                                        <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="single-list flex-row d-flex">
-                                <div class="thumb">
-                                    <img src="storage/img/m3.jpg" alt="">
-                                </div>
-                                <div class="details">
-                                    <a href="image-post.html">
-                                        <h6>5 Tips For Offshore Soft
-                                            Development </h6>
-                                    </a>
-                                    <ul class="meta">
-                                        <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April, 2018</a>
-                                        </li>
-                                        <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="single-list flex-row d-flex">
-                                <div class="thumb">
-                                    <img src="storage/img/m4.jpg" alt="">
-                                </div>
-                                <div class="details">
-                                    <a href="image-post.html">
-                                        <h6>5 Tips For Offshore Soft
-                                            Development </h6>
-                                    </a>
-                                    <ul class="meta">
-                                        <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April, 2018</a>
-                                        </li>
-                                        <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

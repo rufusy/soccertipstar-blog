@@ -32,19 +32,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-6 header-top-left no-padding">
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                            </ul>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-6 header-top-right no-padding">
                             <ul>
                                 <li><a href="tel:+440 012 3654 896"><span
-                                            class="lnr lnr-phone-handset"></span><span>+440 012 3654 896</span></a></li>
+                                            class="lnr lnr-phone-handset"></span><span>+254 772928599</span></a></li>
                                 <li><a href="mailto:support@colorlib.com"><span
-                                            class="lnr lnr-envelope"></span><span>support@colorlib.com</span></a></li>
+                                            class="lnr lnr-envelope"></span><span>support@soccertipstar.com</span></a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -55,7 +50,7 @@
                     <div class="row justify-content-between align-items-center">
                         <div class="col-lg-4 col-md-4 col-sm-12 logo-left no-padding">
                             <a href="index.html">
-                                <img class="img-fluid" src="storage/img/logo.png" alt="">
+                                {{-- <img class="img-fluid" src="storage/img/logo.png" alt=""> --}}
                             </a>
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-12 logo-right no-padding ads-banner">
@@ -97,58 +92,51 @@
         <footer class="footer-area section-gap">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 single-footer-widget">
-                        <h4>Top Products</h4>
-                        <ul>
-                            <li><a href="#">Managed Website</a></li>
-                            <li><a href="#">Manage Reputation</a></li>
-                            <li><a href="#">Power Tools</a></li>
-                            <li><a href="#">Marketing Service</a></li>
-                        </ul>
-                    </div>
                     <div class="col-lg-2 col-md-6 single-footer-widget">
+                        <h4>Mission</h4>
+                        <p>
+                            To form a winning strategy to guarantee profits to all our subscribers.
+                        </p>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 single-footer-widget">
+                        <h4>NOTE</h4>
+                        <p class="text-danger">
+                            WE DON’T POST FIXED MATCHES. DON’T LET ANY OTHER WEBSITE CLAIMING TO BE US SCAM YOU!
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 single-footer-widget">
                         <h4>Quick Links</h4>
                         <ul>
-                            <li><a href="#">Jobs</a></li>
-                            <li><a href="#">Brand Assets</a></li>
-                            <li><a href="#">Investor Relations</a></li>
+                            <li><a href="#">about</a></li>
+                            <li><a href="#">contact form</a></li>
                             <li><a href="#">Terms of Service</a></li>
                         </ul>
                     </div>
-                    <div class="col-lg-2 col-md-6 single-footer-widget">
-                        <h4>Features</h4>
+
+                    <div class="col-lg-3 col-md-6 single-footer-widget">
+                        <h4>Contact us</h4>
                         <ul>
-                            <li><a href="#">Jobs</a></li>
-                            <li><a href="#">Brand Assets</a></li>
-                            <li><a href="#">Investor Relations</a></li>
-                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="tel:+440 012 3654 896"><span class="lnr lnr-phone-handset"></span><span>+254 772928599</span></a></li>
+                            <li><a href="mailto:support@colorlib.com"><span class="lnr lnr-envelope"></span><span>support@soccertipstar.com</span></a></li>
                         </ul>
                     </div>
+            
                     <div class="col-lg-2 col-md-6 single-footer-widget">
                         <h4>Resources</h4>
                         <ul>
-                            <li><a href="#">Guides</a></li>
-                            <li><a href="#">Research</a></li>
-                            <li><a href="#">Experts</a></li>
-                            <li><a href="#">Agencies</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3 col-md-6 single-footer-widget">
-                        <h4>Instragram Feed</h4>
-                        <ul class="instafeed d-flex flex-wrap">
-                            <li><img src="storage/img/i1.jpg" alt=""></li>
-                            <li><img src="storage/img/i2.jpg" alt=""></li>
-                            <li><img src="storage/img/i3.jpg" alt=""></li>
-                            <li><img src="storage/img/i4.jpg" alt=""></li>
-                            <li><img src="storage/img/i5.jpg" alt=""></li>
-                            <li><img src="storage/img/i6.jpg" alt=""></li>
-                            <li><img src="storage/img/i7.jpg" alt=""></li>
-                            <li><img src="storage/img/i8.jpg" alt=""></li>
+                            <li><a href="#">Authors</a></li>
+                            <li><a href="#">Developers</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="footer-bottom row align-items-center">
 
+                <div class="footer-bottom row align-items-center">
+                	<p class="footer-text m-0 col-lg-8 col-md-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;2019 All rights reserved
+                    </p>
                     <div class="col-lg-4 col-md-12 footer-social">
                         <a href="#"><i class="fa fa-facebook"></i></a>
                         <a href="#"><i class="fa fa-twitter"></i></a>
@@ -156,11 +144,11 @@
                         <a href="#"><i class="fa fa-behance"></i></a>
                     </div>
                 </div>
+
             </div>
         </footer>
         <!-- End footer Area -->
     </div>
-
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('Magazine/js/vendor/jquery-2.2.4.min.js') }}"></script>
     <script src="{{ asset('Magazine/js/vendor/bootstrap.min.js') }}"></script>

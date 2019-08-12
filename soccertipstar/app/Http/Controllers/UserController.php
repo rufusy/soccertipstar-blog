@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
+
+use App\Mail\NewAccountSetup;
 use App\User;
 use App\Role;
 use DataTables;
@@ -53,6 +56,7 @@ class UserController extends Controller
         return view('home.users.index');
     }
    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -74,18 +78,18 @@ class UserController extends Controller
             $max = mb_strlen($keyspace, '8bit') - 1;
             for ($i=0; $i<$length; $i++)
                 $password .= $keyspace[random_int(0, $max)];
-            $password = 'test1234';
             $extra_data = [
                             'password' => Hash::make($password),
                         ];
             $final_data = array_merge($data, $extra_data);
         
-            User::Create([
+            $user = User::Create([
                 'first_name' => $final_data['first_name'],
                 'last_name' => $final_data['last_name'],
                 'email' => $final_data['email'],
                 'password' => $final_data['password']
             ]);
+            Mail::to($final_data['email'])->send(new NewAccountSetup($final_data['email'], $password));
             return response()->json(['success'=>'user saved successfully.']);
         }
 
@@ -139,6 +143,7 @@ class UserController extends Controller
         }
         return redirect()->back();
     }
+
 
     /**
      * Remove the specified resource from storage.

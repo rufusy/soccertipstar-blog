@@ -10,18 +10,18 @@
                 <div class="col-lg-8 top-post-left">
                     <div class="feature-image-thumb relative">
                         <div class="overlay overlay-bg"></div>
-                        <img class="img-fluid" src="storage/img/top-post1.jpg" alt="">
+                        <img class="img-fluid" src="/storage/{{$recent_posts[0]->image}}" style="width:756px;height:449px;"alt="">
                     </div>
                     <div class="top-post-details">
-                        <a href="/post/{{$featured_posts[0]->slug}}">
-                            <h3>{{$featured_posts[0]->title}}</h3>
+                        <a href="/post/{{$recent_posts[0]->slug}}">
+                            <h3>{{$recent_posts[0]->title}}</h3>
                         </a>
                         <ul class="meta">
                             <li><a href="#"><span class="lnr lnr-user"></span>
-                                    {{$featured_posts[0]->user->first_name.' '.$featured_posts[0]->user->last_name}}
+                                    {{$recent_posts[0]->user->first_name.' '.$recent_posts[0]->user->last_name}}
                                 </a></li>
                             <li><a href="#"><span class="lnr lnr-calendar-full"></span>
-                                    {{$featured_posts[0]->published_at}}
+                                    {{$recent_posts[0]->published_at}}
                                 </a></li>
                             <li><a href="#"><span class="lnr lnr-bubble"></span>06 Comments</a></li>
                         </ul>
@@ -32,19 +32,19 @@
                     <div class="single-top-post">
                         <div class="feature-image-thumb relative">
                             <div class="overlay overlay-bg"></div>
-                            <img class="img-fluid" src="storage/img/top-post2.jpg" alt="">
+                            <img class="img-fluid" src="/storage/{{$recent_posts[1]->image}}" style="width:380px;height:220px;" alt="">
                         </div>
                         <div class="top-post-details">
-                            <a href="/post/{{$featured_posts[1]->slug}}">
-                                <h4>{{$featured_posts[1]->title}}</h4>
+                            <a href="/post/{{$recent_posts[1]->slug}}">
+                                <h4>{{$recent_posts[1]->title}}</h4>
                             </a>
                             <ul class="meta">
                                 <li><a href="#"><span class="lnr lnr-user"></span>
-                                    {{$featured_posts[1]->user->first_name.' '.$featured_posts[1]->user->last_name}}
-                                </a></li>
+                                        {{$recent_posts[1]->user->first_name.' '.$recent_posts[1]->user->last_name}}
+                                    </a></li>
                                 <li><a href="#"><span class="lnr lnr-calendar-full"></span>
-                                    {{$featured_posts[1]->published_at}}
-                                </a></li>
+                                        {{$recent_posts[1]->published_at}}
+                                    </a></li>
                                 <li><a href="#"><span class="lnr lnr-bubble"></span>06 Comments</a></li>
                             </ul>
                         </div>
@@ -52,19 +52,19 @@
                     <div class="single-top-post mt-10">
                         <div class="feature-image-thumb relative">
                             <div class="overlay overlay-bg"></div>
-                            <img class="img-fluid" src="storage/img/top-post2.jpg" alt="">
+                            <img class="img-fluid" src="/storage/{{$recent_posts[2]->image}}" style="width:380px;height:220px;" alt="">
                         </div>
                         <div class="top-post-details">
-                            <a href="/post/{{$featured_posts[2]->slug}}">
-                                <h4>{{$featured_posts[2]->title}}</h4>
+                            <a href="/post/{{$recent_posts[2]->slug}}">
+                                <h4>{{$recent_posts[2]->title}}</h4>
                             </a>
                             <ul class="meta">
                                 <li><a href="#"><span class="lnr lnr-user"></span>
-                                    {{$featured_posts[2]->user->first_name.' '.$featured_posts[2]->user->last_name}}
-                                </a></li>
+                                        {{$recent_posts[2]->user->first_name.' '.$recent_posts[2]->user->last_name}}
+                                    </a></li>
                                 <li><a href="#"><span class="lnr lnr-calendar-full"></span>
-                                    {{$featured_posts[2]->published_at}}
-                                </a></li>
+                                        {{$recent_posts[2]->published_at}}
+                                    </a></li>
                                 <li><a href="#"><span class="lnr lnr-bubble"></span>06 Comments</a></li>
                             </ul>
                         </div>
@@ -88,9 +88,8 @@
                             <div class="col-lg-5 post-left">
                                 <div class="feature-img relative">
                                     <div class="overlay overlay-bg"></div>
-                                    <img class="img-fluid" src="storage/img/l1.jpg" alt="">
+                                    <img class="img-fluid" src="/storage/{{$post->image}}"  style="width:278px;height:180px;"alt="">
                                 </div>
-
                             </div>
                             <div class="col-lg-7 post-right">
                                 <a href="/post/{{$post->slug}}">
@@ -121,19 +120,68 @@
                         <img class="img-fluid" src="storage/img/banner-ad.jpg" alt="">
                     </div>
                     <!-- End banner-ads Area -->
+                    
                 </div>
                 <div class="col-lg-4">
                     <div class="sidebars-area">
-                        <div class="single-sidebar-widget ads-widget">
-                            <img class="img-fluid" src="storage/img/sidebar-ads.jpg" alt="">
+                        <div class="single-sidebar-widget editors-pick-widget">
+                            <h6 class="title">Editor’s Pick</h6>
+                            <div class="editors-pick-post">
+                                @if (count($featured_posts)>0)  
+                                <div class="feature-img-wrap relative">
+                                    <div class="feature-img relative">
+                                        <div class="overlay overlay-bg"></div>
+                                        <img class="img-fluid" src="/storage/{{$featured_posts[0]->image}}" style="width:320px;height:180px;" alt="">
+                                    </div>
+                                </div>
+                                <div class="details">
+                                    <a href="image-post.html">
+                                        <h4 class="mt-20">{{$featured_posts[0]->title}}</h4>
+                                    </a>
+                                    <ul class="meta">
+                                        <li><a href="#"><span class="lnr lnr-user"></span>
+                                                {{$featured_posts[0]->user->first_name.' '.$featured_posts[0]->user->last_name}}
+                                            </a></li>
+                                        <li><a href="#"><span class="lnr lnr-calendar-full"></span>
+                                                {{$featured_posts[0]->published_at}}
+                                            </a></li>
+                                        <li><a href="#"><span class="lnr lnr-bubble"></span>06 Comments</a></li>
+                                    </ul>
+                                    <p class="excert">
+                                        {!!$featured_posts[0]->excerpt!!}
+                                    </p>
+                                </div>
+                                <div class="post-lists">
+                                    @if (count($featured_posts)>1)  
+                                        @foreach ($featured_posts->slice(1) as $featured_post)
+                                        <div class="single-post d-flex flex-row">
+                                            <div class="thumb">
+                                                <img src="/storage/{{$featured_post->image}}" style="width:100px;height:80px;" alt="">
+                                            </div>
+                                            <div class="detail">
+                                                <a href="image-post.html">
+                                                    <h6>{{$featured_post->title}}</h6>
+                                                </a>
+                                                <ul class="meta">
+                                                    <li><a href="#"><span
+                                                        class="lnr lnr-calendar-full"></span>{{$featured_post->published_at}}</a>
+                                                    </li>
+                                                    <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                                @endif
+                            </div>
                         </div>
+                        <div class="single-sidebar-widget ads-widget">
+                            <img class="img-fluid" src="/storage/img/sidebar-ads.jpg" alt="">
+                        </div>
+
                         <div class="single-sidebar-widget newsletter-widget">
                             <h6 class="title">Newsletter</h6>
-                            <p>
-                                Here, I focus on a range of items
-                                andfeatures that we use in life without
-                                giving them a second thought.
-                            </p>
                             <div class="form-group d-flex flex-row">
                                 <div class="col-autos">
                                     <div class="input-group">
@@ -145,75 +193,12 @@
                                 <a href="#" class="bbtns">Subcribe</a>
                             </div>
                             <p>
-                                You can unsubscribe us at any time
+                                You can unsubscribe us at any time to receive the latest news and other goodies as they become available.
+                                We promise not to spam you.
                             </p>
                         </div>
                         <div class="single-sidebar-widget most-popular-widget">
                             <h6 class="title">Most Popular</h6>
-                            <div class="single-list flex-row d-flex">
-                                <div class="thumb">
-                                    <img src="storage/img/m1.jpg" alt="">
-                                </div>
-                                <div class="details">
-                                    <a href="image-post.html">
-                                        <h6>Help Finding Information
-                                            Online is so easy</h6>
-                                    </a>
-                                    <ul class="meta">
-                                        <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April, 2018</a>
-                                        </li>
-                                        <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="single-list flex-row d-flex">
-                                <div class="thumb">
-                                    <img src="storage/img/m2.jpg" alt="">
-                                </div>
-                                <div class="details">
-                                    <a href="image-post.html">
-                                        <h6>Compatible Inkjet Cartr
-                                            world famous</h6>
-                                    </a>
-                                    <ul class="meta">
-                                        <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April, 2018</a>
-                                        </li>
-                                        <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="single-list flex-row d-flex">
-                                <div class="thumb">
-                                    <img src="storage/img/m3.jpg" alt="">
-                                </div>
-                                <div class="details">
-                                    <a href="image-post.html">
-                                        <h6>5 Tips For Offshore Soft
-                                            Development </h6>
-                                    </a>
-                                    <ul class="meta">
-                                        <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April, 2018</a>
-                                        </li>
-                                        <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="single-list flex-row d-flex">
-                                <div class="thumb">
-                                    <img src="storage/img/m4.jpg" alt="">
-                                </div>
-                                <div class="details">
-                                    <a href="image-post.html">
-                                        <h6>5 Tips For Offshore Soft
-                                            Development </h6>
-                                    </a>
-                                    <ul class="meta">
-                                        <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April, 2018</a>
-                                        </li>
-                                        <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
