@@ -95,18 +95,30 @@ class ProfileController extends Controller
             'mobile_no' => '',
             'sex' => '',
             'bio' => '',
-            'image' => '',
+            'image' => 'image|required|mimes:jpeg,png,jpg,gif,svg',
             'twitter_url' => $request->twitter_url != null ? 'url':'',
             'facebook_url' => $request->facebook_url != null ? 'url':'',
             'instagram_url' => $request->instagram_url != null ? 'url':'',
         ]);
         if(request('image'))
         {
-            $imagePath = request('image')->store('profile', 'public'); // pass in directory and driver
-            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000,1000);
-            $image->save();
-            $imageArray = ['image' => $imagePath];
-        }  
+           // get filename with extension
+           $fileNameWithExtension = $input['image'] -> getClientOriginalName();
+           // get filename without extension
+           $fileName = pathinfo($fileNameWithExtension, PATHINFO_FILENAME);
+           //get file extension
+           $extension = $input['image'] -> getClientOriginalExtension();
+           //filename to store
+           $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+           //Upload original image
+           $input['image'] -> storeAs('public/profile', $fileNameToStore);
+           // resize the profile image
+           $thumbNailPath = ('storage/profile/'.$fileNameToStore);
+           $img = Image::make($thumbNailPath) -> resize(160, 160) -> save($thumbNailPath);
+
+           $thumbNailPathToStore = 'profile/'.$fileNameToStore;
+           $imageArray = ['image' => $thumbNailPathToStore];
+        }
         else 
             (auth()->user()->profile->image)? $imageArray= ['image'=>auth()->user()->profile->image] : $imageArray=['image'=>''];
         

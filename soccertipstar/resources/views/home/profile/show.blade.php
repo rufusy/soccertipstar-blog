@@ -216,7 +216,7 @@
 
                                 <!-- bio -->
                                 <div class="form-group">
-                                    <label for="bio" class="col-sm-2 control-label">instagram url</label>
+                                    <label for="bio" class="col-sm-2 control-label">Bio</label>
 
                                     <div class="col-sm-10">
                                         <textarea class="form-control @error('bio') is-invalid @enderror" name="bio"

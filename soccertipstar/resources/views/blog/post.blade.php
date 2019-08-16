@@ -12,7 +12,10 @@
                     <div class="single-post-wrap">
                         <div class="feature-img-thumb relative">
                             <div class="overlay overlay-bg"></div>
-                            <img src="/storage/{{$post->image}}"  style="width:710px;height:300px;"alt="">
+                             @php
+                                $post_images = explode(',',$post->image);
+                            @endphp
+                            <img src="/storage/{{$post_images[5]}}"  alt="">
                         </div>
                         <div class="content-wrap">
                             <a href="#">
@@ -25,35 +28,30 @@
                                 <li><a href="#"><span class="lnr lnr-calendar-full"></span>
                                         {{$post->published_at}}
                                     </a></li>
-                                <li><a href="#"><span class="lnr lnr-bubble"></span>06 </a></li>
                             </ul>
                             {!!$post->content!!}
                         </div>
+
                         <div class="comment-form">
                             <h4>Post Comment</h4>
-                            <form>
-                                <div class="form-group form-inline">
-                                    <div class="form-group col-lg-6 col-md-12 name">
-                                        <input type="text" class="form-control" id="name" placeholder="Enter Name"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'">
-                                    </div>
-                                    <div class="form-group col-lg-6 col-md-12 email">
-                                        <input type="email" class="form-control" id="email"
-                                            placeholder="Enter email address" onfocus="this.placeholder = ''"
-                                            onblur="this.placeholder = 'Enter email address'">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject'">
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"
-                                        required=""></textarea>
-                                </div>
-                                <a href="#" class="primary-btn text-uppercase">Post Comment</a>
-                            </form>
+                            <!-- start disqus -->
+                            <div id="disqus_thread"></div>
+                            <script>
+                                var disqus_config = function () {
+                                    var slug = {{$post->slug}};
+                                    this.page.url = 'http://soccertipstar.test/post/'+slug;  
+                                    this.page.identifier = slug; 
+                                };
+
+                                (function() { // DON'T EDIT BELOW THIS LINE
+                                    var d = document, s = d.createElement('script');
+                                    s.src = 'https://soccertipstar.disqus.com/embed.js';
+                                    s.setAttribute('data-timestamp', +new Date());
+                                    (d.head || d.body).appendChild(s);
+                                })();
+                            </script>
+                            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            <!-- end disqus -->
                         </div>
                     </div>
                     <!-- End single-post Area -->

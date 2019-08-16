@@ -37,13 +37,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <textarea id="content" name="content" rows="80" cols="80"> {{ old('content') }}
+                                <textarea id="new_content" name="content" class="post_content" rows="80" cols="80"> {{ old('content') }}
                                     </textarea>
                             </div>
                             <div class="form-group">
                                 <label for="image" class="col-sm-2 control-label">Image</label>
                                 <div class="col-sm-10">
-                                    <input type="file" name="image" id="image">
+                                    <input type="file" name="image" id="new-image">
                                 </div>
                             </div>
                         </form>

@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-use App\Http\Controllers\SlugController as SlugController;
 use DateTime;
-use App\Post;
-use Intervention\Image\Facades\Image;
 
+use App\Http\Controllers\SlugController as SlugController;  
+use App\Http\Controllers\ImageUploadController;
+use App\Post;
 
 class PostController extends SlugController
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -37,10 +37,8 @@ class PostController extends SlugController
                         ->orderBy('id', 'desc')
                         ->orderBy('id', 'desc')
                         ->get();
-                        
         return view('blog.index', compact('posts', 'recent_posts', 'featured_posts'));
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -52,6 +50,7 @@ class PostController extends SlugController
         return view('home.posts.create');
     }
 
+   
     /**
      * Store a newly created resource in storage.
      *
@@ -60,16 +59,14 @@ class PostController extends SlugController
      */
     public function store(Request $request)
     {
-         $input = request()->validate([
+        $input = request()->validate([
             'title' => 'required|unique:posts',
             'content' => 'required',
-            'image' => 'required'
+            'image' => 'image|required|mimes:jpeg,png,jpg,gif,svg'
         ]);
-
-        $imagePath = request('image')->store('posts', 'public'); // pass in directory and driver
-        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000,1000);
-        $image->save();
-        $imageArray = ['image' => $imagePath];
+        $imgUploader = new ImageUploadController;
+        $imgPaths = $imgUploader->postImageUpload($input['image']);
+        $imageArray = ['image' => $imgPaths];
 
         $slug = $this->createSlug($request->input('title'));
         $excerpt = substr($input['content'], 0, 300);
@@ -95,7 +92,7 @@ class PostController extends SlugController
             'featured' => $featured,
             'published_at' => $published_at
         ]);
-        return redirect()->route('post.create'); 
+        return redirect()->route('post.create')->with("success","Post created successfully!");
     }
 
     /**
@@ -134,8 +131,22 @@ class PostController extends SlugController
         $data = request()->validate([
             'title' => 'required|unique:posts,title,'.$id,              
             'content' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg'
         ]);
-        //dd($request->all());
+
+        $post = Post::findOrFail($id);
+
+        if($request->hasFile('image')) 
+        {
+            $imgUploader = new ImageUploadController;
+            $imgPaths = $imgUploader->postImageUpload($data['image']);
+            $imageArray = ['image' => $imgPaths];
+        }
+        else
+        {
+            $imageArray = ['image' =>$post->image];
+        }
+
         $slug = $this->createSlug($request->input('title'));
         $excerpt = substr($data['content'], 0, 300);
         if($request->input('submit') === 'publish')
@@ -151,7 +162,6 @@ class PostController extends SlugController
         $updated_at = new DateTime();
         $request->has('feature') ? $featured = 1 : $featured = 0;
            
-        $post = Post::findOrFail($id);
         $post->title = $data['title'];
         $post->slug = $slug;
         $post->excerpt = $excerpt;
@@ -159,6 +169,7 @@ class PostController extends SlugController
         $post->status = $status;
         $post->featured = $featured;
         $post->published_at = $published_at;
+        $post->image = $imageArray['image'];
         //$post->updated_at = $updated_at;
         $post->save();
         return redirect()->route('post.create'); 

@@ -114,7 +114,7 @@
     <!-- CKeditor -->
     <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script> 
     <script>
-        CKEDITOR.replace( 'content' );
+        CKEDITOR.replaceAll( 'post_content' );
     </script> 
 
     @yield('scripts')
