@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 
 use App\Mail\NewAccountSetup;
@@ -78,6 +79,7 @@ class UserController extends Controller
             $max = mb_strlen($keyspace, '8bit') - 1;
             for ($i=0; $i<$length; $i++)
                 $password .= $keyspace[random_int(0, $max)];
+            $password = 'abcd1234';
             $extra_data = [
                             'password' => Hash::make($password),
                         ];
@@ -89,7 +91,7 @@ class UserController extends Controller
                 'email' => $final_data['email'],
                 'password' => $final_data['password']
             ]);
-            Mail::to($final_data['email'])->send(new NewAccountSetup($final_data['email'], $password));
+            //Mail::to($final_data['email'])->send(new NewAccountSetup($final_data['email'], $password));
             return response()->json(['success'=>'user saved successfully.']);
         }
 
@@ -153,7 +155,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
-        return response()->json(['success'=>'User deleted successfully.']);
+        $user = Auth::user();
+        if($user->id == $id)
+        {
+            return response()->json(['error'=>'User not deleted']);
+        }
+        else
+        {
+            User::find($id)->delete();
+            return response()->json(['success'=>'User deleted successfully.']);
+        }
     }
 }
