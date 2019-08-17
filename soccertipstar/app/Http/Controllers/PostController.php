@@ -20,23 +20,37 @@ class PostController extends SlugController
      */
     public function index()
     {
-        $recent_posts = Post::where('status','=',1)
-                        ->orderBy('id', 'desc')
-                        ->take(3)
-                        ->get();
+        $published_posts = Post::where('status','=',1)->count();
 
-        $posts = Post::where('status','=',1)
-                ->where('id', '<>', $recent_posts[0]->id)
-                ->where('id', '<>', $recent_posts[1]->id)
-                ->where('id', '<>', $recent_posts[2]->id)
-                ->orderBy('id', 'desc')
-                ->paginate(10);
+        if($published_posts > 3)
+        {
+            $recent_posts = Post::where('status','=',1)
+                            ->orderBy('id', 'desc')
+                            ->take(3)
+                            ->get();
+
+            $posts = Post::where('status','=',1)
+                    ->where('id', '<>', $recent_posts[0]->id)
+                    ->where('id', '<>', $recent_posts[1]->id)
+                    ->where('id', '<>', $recent_posts[2]->id)
+                    ->orderBy('id', 'desc')
+                    ->paginate(10);
+        }
+
+        else 
+        {
+            $posts = Post::where('status','=',1)
+                        ->orderBy('id', 'desc')
+                        ->paginate(10);  
+            $recent_posts = [];
+        }
 
         $featured_posts = Post::where('status','=',1)
                         ->where('featured','=',1)
                         ->orderBy('id', 'desc')
                         ->orderBy('id', 'desc')
                         ->get();
+                        
         return view('blog.index', compact('posts', 'recent_posts', 'featured_posts'));
     }
 
