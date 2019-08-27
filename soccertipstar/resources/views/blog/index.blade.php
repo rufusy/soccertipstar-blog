@@ -16,6 +16,9 @@
                         <img class="img-fluid" src="/storage/{{$recent_post_0_images[0]}}" alt="">
                     </div>
                     <div class="top-post-details">
+                        <ul class="tags">
+							<li><a href="/post/{{$recent_posts[0]->slug}}">Read more</a></li>
+						</ul>
                         <a href="/post/{{$recent_posts[0]->slug}}">
                             <h3>{{$recent_posts[0]->title}}</h3>
                         </a>
@@ -41,6 +44,9 @@
                                 <img class="img-fluid" src="/storage/{{$recent_post_1_images[1]}}" alt="">
                             </div>
                             <div class="top-post-details">
+                                <ul class="tags">
+							        <li><a href="/post/{{$recent_posts[1]->slug}}">Read more</a></li>
+						        </ul>
                                 <a href="/post/{{$recent_posts[1]->slug}}">
                                     <h4>{{$recent_posts[1]->title}}</h4>
                                 </a>
@@ -65,6 +71,9 @@
                                 <img class="img-fluid" src="/storage/{{$recent_post_2_images[1]}}" alt="">
                             </div>
                             <div class="top-post-details">
+                                 <ul class="tags">
+							        <li><a href="/post/{{$recent_posts[2]->slug}}">Read more</a></li>
+						        </ul>
                                 <a href="/post/{{$recent_posts[2]->slug}}">
                                     <h4>{{$recent_posts[2]->title}}</h4>
                                 </a>
@@ -104,6 +113,9 @@
                                     @endphp
                                     <img class="img-fluid" src="/storage/{{$post_images[2]}}" alt="">
                                 </div>
+                                <ul class="tags">
+									<li><a href="/post/{{$post->slug}}">Read more</a></li>
+							    </ul>
                             </div>
                             <div class="col-lg-7 post-right">
                                 <a href="/post/{{$post->slug}}">
@@ -149,6 +161,9 @@
                                         @endphp
                                         <img class="img-fluid" src="/storage/{{  $featured_post_0_images[3]}}" alt="">
                                     </div>
+                                    <ul class="tags">
+									    <li><a href="/post/{{$featured_posts[0]->slug}}">Read more</a></li>
+							        </ul>
                                 </div>
                                 <div class="details">
                                     <a href="/post/{{$featured_posts[0]->slug}}">

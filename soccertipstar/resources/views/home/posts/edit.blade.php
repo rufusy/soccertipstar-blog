@@ -13,6 +13,7 @@
                             @csrf
                             @method('PATCH')
                             <div class="form-group">
+                                <div class="row"> <p style="margin-left:15px;" class="text-danger"> To maintain the quality of the images uploaded, Kindly use images that are atleast 750 pixels in width and 439 pixels in height. </p></div>
                                 <div class="row">
                                     <div class="col-xs-7">
                                         <input type="text" class="form-control" id="title" name="title"

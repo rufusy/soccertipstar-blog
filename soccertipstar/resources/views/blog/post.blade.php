@@ -38,9 +38,13 @@
                             <div id="disqus_thread"></div>
                             <script>
                                 var disqus_config = function () {
-                                    var slug = {{$post->slug}};
-                                    this.page.url = 'http://soccertipstar.test/post/'+slug;  
-                                    this.page.identifier = slug; 
+                                    //var slug = {{$post->slug}};
+                                    //this.page.url = 'https://blog.soccertipstar.com/post/'+slug;  
+                                    //this.page.identifier = slug; 
+                                    
+                                    var id = {{$post->id}};
+                                    this.page.url = 'https://blog.soccertipstar.com/post/'+id;  
+                                    this.page.identifier = id; 
                                 };
 
                                 (function() { // DON'T EDIT BELOW THIS LINE

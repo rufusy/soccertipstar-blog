@@ -83,7 +83,7 @@ class PostController extends SlugController
         $imageArray = ['image' => $imgPaths];
 
         $slug = $this->createSlug($request->input('title'));
-        $excerpt = substr($input['content'], 0, 300);
+        $excerpt = substr($input['content'], 0, 200);
         if($request->input('submit') === 'publish')
         {
             $published_at = new DateTime();
@@ -162,7 +162,7 @@ class PostController extends SlugController
         }
 
         $slug = $this->createSlug($request->input('title'));
-        $excerpt = substr($data['content'], 0, 300);
+        $excerpt = substr($data['content'], 0, 200);
         if($request->input('submit') === 'publish')
         {
             $published_at = new DateTime();
